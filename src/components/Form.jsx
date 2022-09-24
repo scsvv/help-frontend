@@ -9,8 +9,18 @@ import { useForm } from "react-hook-form";
 import { Button, FormControl } from '@mui/material';
 import axios from 'axios';
 
-const Form = () => {
+import { db } from '../../firebaseConfig';
+import {
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+  } from "firebase/firestore";
 
+const Form = () => {
+    const recipientCollectionRef = collection(db, "recipients");
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         setState(data);
@@ -23,7 +33,7 @@ const Form = () => {
     
     function handleSend() {
         console.log(JSON.stringify({...state, sign: sign.signature}))
-        axios.post('http://127.0.0.1:4444/recipient/',  {
+        /*axios.post('http://127.0.0.1:4444/recipient/',  {
             "name": state.name, 
             "surname": state.surname, 
             "fathers": state.fathers, 
@@ -35,7 +45,27 @@ const Form = () => {
             "sign": sign.signature, 
             "address": state.address, 
             "type_list": type_getter[0] || "Другое"
-        })
+        })*/
+    }
+
+    const createRecipient = async () => {
+        try {
+            await addDoc(recipientCollectionRef, {
+                name: state.name, 
+                surname: state.surname, 
+                fathers: state.fathers, 
+                phone: state.phone, 
+                church: state.church, 
+                city: state.city, 
+                child_less: state.child_less, 
+                child_more: state.child_more, 
+                address: state.address, 
+                type_list: type_getter[0] || "Другое"
+            });
+        } catch (e) {
+            alert(e.message)
+        }
+        
     }
 
     function typeChoose(e) {
@@ -220,8 +250,11 @@ const Form = () => {
             <Button variant="outlined" type='submit' color="success">Потдердить</Button>
         </Box>
         </form>
-        {step && ( <Sign state={sign} setState={setSign}/>) }
-        {step && <Button onClick={handleSend}>Отправить</Button> }
+        {
+            // step && ( <Sign state={sign} setState={setSign}/>) 
+        }
+
+        {step && <> <Button onClick={createRecipient}>Отправить</Button> </>}
     </Box>
 
   )

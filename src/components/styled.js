@@ -20,3 +20,15 @@ export const LoginStyled = styled.div`
 
     }
 `
+
+export const SendBox = styled.div`
+    width: min-content; 
+    margin: 0 auto;
+    margin-top: 30px; 
+    text-align: center;
+` 
+
+export const Header = styled.div`
+    display: flex; 
+    justify-content: end; 
+`

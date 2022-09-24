@@ -7,7 +7,7 @@ import {
     signInWithEmailAndPassword 
 } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
-import { LoginStyled } from './styled';
+import { Header, LoginStyled } from './styled';
 import { Button } from '@mui/material';
 
 const Login = ({user, setUser}) => {
@@ -44,7 +44,9 @@ const Login = ({user, setUser}) => {
 
     if (auth.currentUser ) {
         return (
-            <button onClick={logout}>Log Out</button>
+            <Header>
+                <Button variant="contained" color="error" onClick={logout}>Log Out</Button>
+            </Header>
         )
     }
 

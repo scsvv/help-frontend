@@ -13,7 +13,7 @@ function App() {
     <div className='container mx-auto py-4'>
       <Login user={user} setUser={setUser} />
       <Routes>
-        <Route path="/" element={<>
+        <Route index path="/" element={<>
           {auth.currentUser && <Form />}
         </>} />
         <Route path='/table' element={ <>{auth.currentUser && <TableRow />}</>} />

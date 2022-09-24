@@ -8,6 +8,8 @@ import {
     doc,
   } from "firebase/firestore";
   import { db } from '../../firebaseConfig';
+import styled from 'styled-components';
+
 
 
 function TableRow() {
@@ -27,7 +29,7 @@ useEffect(() => {
   console.log(recipient)
 
 return (
-  <div>
+  <Tb>
     { recipient.map(el => (
       <div key={el.id}>
         ФИО: <span>{el.name} {el.surname} {el.fathers} </span>
@@ -41,8 +43,17 @@ return (
         Дети 3 - 18  - <span>{el.child_more}</span>
       </div>
     )) }
-  </div>
+  </Tb>
   )
 }
 
 export default TableRow
+
+const Tb = styled.div`
+  padding-top: 10px;
+  & > div {
+    border: 1px solid black;  
+    margin-bottom: 10px;
+    padding: 2px;
+  }
+`

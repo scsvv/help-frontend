@@ -16,7 +16,7 @@ function App() {
         <Route index path="/" element={<>
           {auth.currentUser && <Form />}
         </>} />
-        <Route path='/table' element={ <>{auth.currentUser && <TableRow />}</>} />
+        <Route index path='/table' element={ <>{auth.currentUser && <TableRow />}</>} />
         <Route path="*" element={<>
           <p>Not Founded</p>
         </>} />

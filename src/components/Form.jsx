@@ -163,6 +163,8 @@ const Form = () => {
                         {...register("phone")}
                     />
                 </Grid>
+                {
+                /*
                 <Grid xs={12} md={4}>
                     <TextField 
                         id="pasport" 
@@ -183,7 +185,10 @@ const Form = () => {
                         className="flex"
                         //{...register("inn")}
                     />
+                
+                
                 </Grid>
+                */}
                 <Grid xs={12} md={4}>
                     <Box className='flex md:justify-between justify-evenly'>
                         <TextField 

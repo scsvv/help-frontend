@@ -7,6 +7,8 @@ import {
     signInWithEmailAndPassword 
 } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
+import { LoginStyled } from './styled';
+import { Button } from '@mui/material';
 
 const Login = ({user, setUser}) => {
   
@@ -47,15 +49,19 @@ const Login = ({user, setUser}) => {
     }
 
     return (
-    <div>
-        <input placeholder='Email' onChange={ (e) => setData({...data, email: e.target.value})} />
-        <input placeholder='Email' onChange={ (e) => setData({...data, password: e.target.value})} />
-        <button onClick={register}>Регистрация</button>
-        <button onClick={login}>Войти</button>
-    </div>
+    <LoginStyled>
+        <input placeholder='Почта' onChange={ (e) => setData({...data, email: e.target.value})} />
+        <input placeholder='Пароль' onChange={ (e) => setData({...data, password: e.target.value})} />
+        <div className='buttons-area'>
+            {// <Button variant="contained" onClick={register}>Регистрация</Button>
+            }
+            <Button variant="contained" color="success" onClick={login}>Войти</Button>
+        </div>
+    </LoginStyled>
 
   )
 
 }
 
 export default Login
+
